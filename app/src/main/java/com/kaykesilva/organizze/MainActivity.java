@@ -29,6 +29,7 @@ public class MainActivity extends IntroActivity {
         addSlide(new FragmentSlide.Builder()
                 .fragment(R.layout.intro_1)
                 .background(R.color.white)
+                .canGoBackward(false) // não é possível voltar
                 .build());
 
         addSlide(new FragmentSlide.Builder()
@@ -44,6 +45,8 @@ public class MainActivity extends IntroActivity {
         addSlide(new FragmentSlide.Builder()
                 .fragment(R.layout.intro_4)
                 .background(R.color.white)
+                .canGoBackward(false) // não é possível voltar
+                .canGoForward(false) // não é possível avançar
                 .build());
 
     }
