@@ -26,6 +26,9 @@ android {
             )
         }
     }
+    dataBinding{
+        enable = true;
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -52,4 +55,6 @@ dependencies {
 
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-auth")
+
+    implementation("com.heinrichreimersoftware:material-intro:2.0.0") // Substitua por uma versão específica
 }
