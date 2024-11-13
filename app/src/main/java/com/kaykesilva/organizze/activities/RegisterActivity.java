@@ -33,9 +33,9 @@ public class RegisterActivity extends AppCompatActivity {
     public void registerButton(View view)  {
         boolean check = checkFields();
             if(check){
-                User user = new User(null, editName.getText().toString(), editEmail.getText().toString(), editPassword.getText().toString());
-                UserService userService = new UserService(this);
-                userService.register(user.getEmail(), user.getPassword());
+                User user = new User(editEmail.getText().toString(), editPassword.getText().toString());
+                String name = editName.getText().toString(); // database
+                UserService.register(RegisterActivity.this, user.getEmail(), user.getPassword());
                cleanRegisterFields();
             }
 }
