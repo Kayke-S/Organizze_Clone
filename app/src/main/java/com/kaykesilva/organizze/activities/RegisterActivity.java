@@ -75,7 +75,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     // Método para validar a senha
     private boolean isValidPassword(String password) {
-        // A senha precisa ter pelo menos 6 caracteres, incluindo letras e números
         String passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
         return password.matches(passwordPattern);
     }
