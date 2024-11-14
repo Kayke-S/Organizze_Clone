@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.kaykesilva.organizze.R;
 import com.kaykesilva.organizze.entities.User;
 import com.kaykesilva.organizze.services.UserService;
@@ -35,8 +34,10 @@ public class RegisterActivity extends AppCompatActivity {
             if(check){
                 User user = new User(editEmail.getText().toString(), editPassword.getText().toString());
                 String name = editName.getText().toString(); // database
-                UserService.register(RegisterActivity.this, user.getEmail(), user.getPassword());
-               cleanRegisterFields();
+
+                UserService userService = new UserService(RegisterActivity.this);
+                userService.register(user.getEmail(), user.getPassword());
+                cleanRegisterFields();
             }
 }
     private boolean checkFields() {
@@ -61,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Validação do formato de senha
         if (!isValidPassword(editPassword.getText().toString())) {
-            Toast.makeText(this, "Password must have at least 8 characters, including letters and numbers", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password must have at least 8 characters.", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -75,9 +76,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     // Método para validar a senha
     private boolean isValidPassword(String password) {
-        String passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+        String passwordPattern = "[A-Za-z0-9.@#$*-]{8,}";
         return password.matches(passwordPattern);
     }
+
 
     private void cleanRegisterFields() {
         editName.setText("");

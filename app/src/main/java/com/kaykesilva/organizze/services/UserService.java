@@ -1,7 +1,7 @@
 package com.kaykesilva.organizze.services;
 
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -9,56 +9,88 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.kaykesilva.organizze.Factories.AuthFactory;
+import com.kaykesilva.organizze.activities.HomeActivity;
+import com.kaykesilva.organizze.activities.LoginActivity;
+import com.kaykesilva.organizze.activities.RegisterActivity;
 
 public class UserService {
 
+    private Context context;
+
     private UserService(){
-        // evitar instâncias indesejadas
+
     }
 
-   public static void register(Context context, String email, String password){
+    public UserService(Context context){
+        this.context = context;
+    }
+
+   public void register(String email, String password){
         AuthFactory.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(context, "Sucesso ao cadastrar usuário", Toast.LENGTH_SHORT).show();
-                }
+                    finishActivity();}
+
                 else{
+                    String exceptionMsg = "";
                     try{
                         throw task.getException();
                     }
+                    catch (FirebaseAuthUserCollisionException e ){
+                        exceptionMsg = "This account has already been registered";
+                    }
                     catch (Exception e ){
-                        Log.i("ExceptionAuth ", e.getMessage());
+                        exceptionMsg = "Error registering user: " + e.getMessage();
                         e.printStackTrace();
                     }
-                        Toast.makeText(context, "Erro ao cadatrar usuário", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, exceptionMsg, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
 
-    public static void login(Context context, String email, String password){
+    public void login(String email, String password){
         AuthFactory.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(context, "Sucesso ao efetuar login ", Toast.LENGTH_SHORT).show();
+
+                    finishActivity();
+                    openHomeActivity();
                 }
                 else{
+                    String exceptionMsg ="";
                     try{
                         throw task.getException();
                     }
-                    catch (Exception e ){
-                        Log.i("ExceptionAuth ", e.getMessage());
-                        e.printStackTrace();
+                    catch (FirebaseAuthInvalidCredentialsException e){
+                        exceptionMsg = "Email and password do not match registered users";
                     }
-                    Toast.makeText(context, "Email e senha podem estar incorretos", Toast.LENGTH_SHORT).show();
+                    catch (Exception e){
+                        exceptionMsg = "Error registering user: " + e.getMessage();
+                    }
+
+                    Toast.makeText(context, exceptionMsg, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
+    public void openHomeActivity(){
+        context.startActivity(new Intent(context, HomeActivity.class));
+    }
 
+    public void finishActivity(){
+        if(context instanceof LoginActivity){
+            ((LoginActivity) context).finish();
+        }
+        else{
+            ((RegisterActivity) context).finish();
+        }
+    }
 }

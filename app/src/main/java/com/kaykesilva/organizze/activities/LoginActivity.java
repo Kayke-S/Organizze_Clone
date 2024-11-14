@@ -35,17 +35,17 @@ public class LoginActivity extends AppCompatActivity {
                 boolean check = checkFields();
                 if(check){
                    User user = new User(editEmail.getText().toString(), editPassword.getText().toString());
-                   UserService.login(LoginActivity.this, user.getEmail(), user.getPassword());
+
+                   UserService userService = new UserService(LoginActivity.this);
+                   userService.login(user.getEmail(), user.getPassword());
+
                 }
             }
         });
 
     }
     private boolean checkFields() {
-        if(TextUtils.isEmpty(editEmail.getText().toString())){
-            Toast.makeText(this, "Type the email", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+
         if (!isValidEmail(editEmail.getText().toString())) {
             Toast.makeText(this, "Enter a valid email", Toast.LENGTH_SHORT).show();
             return false;
