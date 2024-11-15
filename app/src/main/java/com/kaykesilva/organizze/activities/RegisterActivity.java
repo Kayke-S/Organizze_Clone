@@ -30,8 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void registerButton(View view)  {
-        boolean check = checkFields();
-            if(check){
+            if(checkFields()){
                 User user = new User(editEmail.getText().toString(), editPassword.getText().toString());
                 String name = editName.getText().toString(); // database
 

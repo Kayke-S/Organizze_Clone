@@ -26,6 +26,7 @@
             app:fab_colorNormal="@color/colorPrimaryExpensive"
             app:fab_colorPressed="@color/colorPrimaryDarkExpensive"
             app:fab_size="mini"
+            android:onClick="addExpensive"
             app:fab_label="Expensive">
         </com.github.clans.fab.FloatingActionButton>
 
@@ -37,6 +38,7 @@
             app:fab_colorNormal="@color/colorPrimaryIncome"
             app:fab_colorPressed="@color/colorPrimaryDarkIncome"
             app:fab_size="mini"
+            android:onClick="addIncome"
             app:fab_label="Income">
         </com.github.clans.fab.FloatingActionButton>
 

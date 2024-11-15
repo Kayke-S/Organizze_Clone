@@ -1,5 +1,6 @@
 package com.kaykesilva.organizze.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,4 +32,15 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void addExpensive(View view){
+        startActivity(new Intent(this, ExpensiveActivity.class));
+
+    }
+
+    public void addIncome(View view){
+        startActivity(new Intent(this, IncomeActivity.class));
+
+    }
+
 }

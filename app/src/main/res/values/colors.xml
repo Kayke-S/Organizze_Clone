@@ -17,5 +17,6 @@
     <color name ="colorPrimaryIncome">#00D39E</color>
     <color name ="colorPrimaryDarkIncome">#00BE8B</color>
     <color name ="colorAccentIncome">#00D39E</color>
+    <color name="Transparent">#00F44336</color>
 
 </resources>

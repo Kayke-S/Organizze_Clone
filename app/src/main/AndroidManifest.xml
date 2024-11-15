@@ -24,6 +24,14 @@
             android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.IncomeActivity"
+            android:exported="false"
+            android:theme="@style/incomeTheme"/>
+        <activity
+            android:name=".activities.ExpensiveActivity"
+            android:exported="false"
+            android:theme="@style/expensiveTheme"/>
+        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>

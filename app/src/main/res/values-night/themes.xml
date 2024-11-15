@@ -1,8 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Organizze" parent="Theme.Material3.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/black</item>
+    <style name="Base.Theme.Organizze" parent="Theme.AppCompat.Light.NoActionBar">
+
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <!--<style name="expensiveTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:colorPrimary">@color/colorPrimaryExpensive</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDarkExpensive</item>
+        <item name="colorAccent">@color/colorAccentExpensive</item>
+        <item name="android:statusBarColor">@color/colorPrimaryExpensive</item>
+    </style>
+
+    <style name="incomeTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:colorPrimary">@color/colorPrimaryIncome</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDarkIncome</item>
+        <item name="colorAccent">@color/colorAccentIncome</item>
+    </style>-->
+
 </resources>
